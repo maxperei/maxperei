@@ -1,0 +1,50 @@
+name: Metrics
+on:
+    schedule: [{cron: "0 0 * * *"}]
+    workflow_dispatch:
+    push: {branches: ["master", "main"]}
+jobs:
+    github-metrics:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        environment:
+            name: production
+        steps:
+            - uses: lowlighter/metrics@latest
+              with:
+                  token: ${{ secrets.METRICS_TOKEN }}
+                  user: maxperei
+                  template: terminal
+                  base: header, activity, community, repositories, metadata
+                  config_timezone: Europe/Paris
+                  plugin_music: no
+                  plugin_music_mode: recent
+                  plugin_music_playlist: >-
+                    https://music.youtube.com/playlist?list=OLAK5uy_kU_uxp9TUOl9zVdw77xith8o9AknVwz9U
+                  plugin_music_provider: youtube
+                  plugin_music_token: CONSENT=PENDING+155; SOCS=CAESEwgDEgk1OTAxODE3NzkaAmZyIAEaBgiAl_6rBg; LOGIN_INFO=AFmmF2swRQIgVG6XHFJ4lu5chy8xghfw7dD6fnEeCwTZM8nUaTsnSiwCIQC0PTiPcJq35pL1_GXQ4meYymklob6tzh6b0R9tROUA9A:QUQ3MjNmeEstWTJaZDV5aDJtQnEyZ0U2WmhQLTNDMDBZQlNyVEdYTE5JUDhDRWlYbmRDTE1OeVEwZ0ZPb1J5Njl0ci1KUXh1aE1JMHF0THR4NTZad3NhUEo3cER3bmZCeHp3SVZxSFZ4WWRIZlNBSGdMOHVLT2t5NFF2b3FtYXJ3V3hwMThlbDJfdnJib2RsNTlOMENRcFVMeVJoNnIxTFB3; VISITOR_PRIVACY_METADATA=CgJGUhIIEgQSAgsMID8%3D; VISITOR_PRIVACY_METADATA=CgJGUhIIEgQSAgsMID8%3D; PREF=f6=40000000&f7=4100&tz=Europe.Paris&f5=20000; SID=g.a000hwjuqVSW2n3NdLiBcpqi3qMIDYGcLkJaW6XuTlLR6h0e_dnVPfNwl69z529fgLPUfk_0yQACgYKAQkSAQASFQHGX2MiE5h6u8XPyzcIg7zghE8QoxoVAUF8yKqdhdNV_Fa4SeKS6G9y3yhx0076; __Secure-1PSID=g.a000hwjuqVSW2n3NdLiBcpqi3qMIDYGcLkJaW6XuTlLR6h0e_dnVGMWMzAgSOlgbrckc6rkvwQACgYKAZsSAQASFQHGX2MiH4XV0ii-jjzWW1acpO9NuBoVAUF8yKodQlFgIbdGR-SUNkiC_3Zl0076; __Secure-3PSID=g.a000hwjuqVSW2n3NdLiBcpqi3qMIDYGcLkJaW6XuTlLR6h0e_dnVpkM5nQqUbBhiuxd3gM98kwACgYKAbASAQASFQHGX2MiLm88MszmtMKbLAIKcG_ISRoVAUF8yKp3AlVQBeVXBOWIUDRp-jhp0076; HSID=AbfcOboa4iik2Qc2N; SSID=AbTKcgM14ixIMwsMn; APISID=sq5Kj5TdOJgy5Slp/AcNUkwlXnZ8E6Pl_q; SAPISID=IaRLanc3aA1xOqd2/APL4o1spS0sFg_o2T; __Secure-1PAPISID=IaRLanc3aA1xOqd2/APL4o1spS0sFg_o2T; __Secure-3PAPISID=IaRLanc3aA1xOqd2/APL4o1spS0sFg_o2T; NID=512=pccUHvD55LEPOszUUkAPRKcEkYBi2vov7TTbpvueM8MV7aA1e9xafp08K0a2T4ZOagDfNwnbiqwDhmK179XMsx7s72zLzSNn1t2pdi-utbJ7-DA0ueokUQ3X7iRSlaCr1mLZWOf_gOGjo7M_kA8wHVY0bAySsM805bnsarBGuX0vk3smafd7IftweNvS0sjlOJH5ms2524hhO4Pr65StGlydgPo; YSC=4U_t_d39E7M; __Secure-1PSIDTS=sidts-CjEB7F1E_DQt8pGm9aVQFf03SYQU-N1Wb2KEh--ASD83oo5AIz34-s95sry0vg-8OwCiEAA; __Secure-3PSIDTS=sidts-CjEB7F1E_DQt8pGm9aVQFf03SYQU-N1Wb2KEh--ASD83oo5AIz34-s95sry0vg-8OwCiEAA; __Secure-YEC=CgtJWWhSRUYxcnFhRSiyhL-wBjIOCgJGUhIIEgQSAgsMID8%3D; SIDCC=AKEyXzW3L_Z2l8VakOzxphNdEqqkjSxdZ2gGtj449Hf9HEGUMQJmMCLWMEilY1oqNN8E1Oo0eUVg; __Secure-1PSIDCC=AKEyXzVOWEMgw5bVAWvYA4x7P0p8p_sJexvdpbDykAjs42d73jKlx8PB92bP4aSvqoF7VoT9BtqI; __Secure-3PSIDCC=AKEyXzVlHAEqPJ_XoICVNfRCI4kU5b2IdebU7cpKgj8AcvdDemV2wYHtbU1Jhh6SL6hlHTdQ_vs
+                  plugin_code: yes
+                  plugin_code_days: 3
+                  plugin_code_lines: 12
+                  plugin_code_load: 400
+                  plugin_code_visibility: public
+                  plugin_isocalendar: no
+                  plugin_isocalendar_duration: half-year
+                  plugin_languages: yes
+                  plugin_languages_analysis_timeout: 15
+                  plugin_languages_analysis_timeout_repositories: 7.5
+                  plugin_languages_categories: markup, programming
+                  plugin_languages_colors: github
+                  plugin_languages_limit: 8
+                  plugin_languages_recent_categories: markup, programming
+                  plugin_languages_recent_days: 14
+                  plugin_languages_recent_load: 300
+                  plugin_languages_sections: most-used
+                  plugin_languages_threshold: 0%
+                  plugin_lines: yes
+                  plugin_lines_history_limit: 1
+                  plugin_lines_repositories_limit: 4
+                  plugin_lines_sections: base
+                  plugin_stars: yes
+                  plugin_stars_limit: 4
